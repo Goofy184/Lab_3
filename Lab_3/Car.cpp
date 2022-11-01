@@ -1,5 +1,6 @@
 #include "Car.h"
 
+
 double Car::getEngineVolume() {
     return engineVolume;
 }
@@ -27,37 +28,42 @@ Car Car::operator+= (double additionalPower) {
     return *this;
 }
 
-
-
-Car::~Car()
-{
-    cout << "\n Destructor of car" << endl;
-}
-
 ostream& operator<<(ostream& os, const Car& car)
 {
 
-    try {
-        os << "Car engine: " << car.engineVolume << " power: " << car.power;
-    }
-    catch (exception& e) {
-        cout << "Incorrect number, exception: " << e.what();
-    }
-
+    os << "Car engine: " << car.engineVolume << " power: " << car.power;
     os << " model: " << car.model << " colour: " << car.colour << endl;
 
     return os;
 }
 
 istream& operator>>(istream& input, Car& car) {
+    string enteredVolume;
+    cout << "Enter the Volume: ";
+    getline(input, enteredVolume);
+
+    string enteredPower;
+    cout << "Enter the Power: ";
+    getline(input, enteredPower);
+
     try {
-        input >> car.engineVolume;
-        input >> car.power;
+        car.engineVolume = stod(enteredVolume);
+        car.power = stod(enteredPower);
+        string enteredColour;
+        cout << "Enter the Colour: ";
+        getline(input, enteredColour);
+
+        string enteredModel;
+        cout << "Enter the Model: ";
+        getline(input, enteredModel);
+
+        car.colour = enteredColour;
+        car.model = enteredModel;
     }
     catch (exception& e) {
         cout << "Incorrect number, exception: " << e.what();
     }
 
-    input >> car.model >> car.colour;
+    
     return input;
 }

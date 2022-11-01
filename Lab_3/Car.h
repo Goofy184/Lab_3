@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <exception>
+#include <string>
 
 using namespace std;
 
@@ -19,12 +20,7 @@ public:
     Car();
     Car(double engineVolumeValue, string colourValue, double powerValue, string modelValue);
     Car operator+= (double additionalPower);
-
     friend ostream& operator<<(ostream& os, const Car& car);
-
     friend istream& operator>>(istream& input, Car& car);
-
-
-    ~Car();
 };
 
